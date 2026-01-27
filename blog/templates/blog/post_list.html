@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    {% for post in posts %}
+    {% for post in page_obj %}
         <article class="post">
             <time class="date">
                 {{ post.published_date }}
@@ -10,4 +10,18 @@
             <p>{{ post.text|linebreaksbr }}</p>
         </article>
     {% endfor %}
+    <div class="pagination">
+        <span class="page-links">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+            <span class ="current">
+                Page {{ page_obj.number}} of {{ page_obj.paginator.num_pages}}
+            </span>
+
+            {%if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number}}">Next</a>
+            {% endif %}
+        </span>
+    </div>
 {% endblock %}
