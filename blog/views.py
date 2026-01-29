@@ -1,5 +1,6 @@
 from django.utils import timezone
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import redirect
 from .models import Post
 from .forms import PostForm
@@ -7,11 +8,16 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 def post_list(request):
+    query = request.GET.get('q')
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    # Filter posts based on search query if provided
+    if query:
+        posts = posts.filter(Q(title__icontains=query) | Q(text__icontains=query))
+
     paginator = Paginator(posts, 5)  # Show 5 posts per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'blog/post_list.html', {'page_obj': page_obj})
+    return render(request, 'blog/post_list.html', {'page_obj': page_obj, 'query': query})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
