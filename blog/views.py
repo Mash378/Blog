@@ -8,8 +8,8 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 def post_list(request):
-    query = request.GET.get('q')
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    query = request.GET.get('query', '')
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     # Filter posts based on search query if provided
     if query:
         posts = posts.filter(Q(title__icontains=query) | Q(text__icontains=query))
