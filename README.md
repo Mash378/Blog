@@ -1,11 +1,31 @@
-# Mash Blog
+# 📝 Mash Blog
 
-A simple Django blog application with draft/publish support and a custom theme.
+A clean and modern blog platform built with **Django**, featuring search, pagination, draft publishing, and a sleek Bootstrap UI.
 
-## Features
-- Create, edit, publish blog posts
-- Admin interface
-- Simple responsive layout
+**Live Demo:** https://mash37.pythonanywhere.com  
+**Tech Stack:** Django, SQLite, Bootstrap 5, PythonAnywhere
+
+---
+
+## 🚀 Features
+
+### Blogging
+- Create, edit, and delete posts
+- Draft vs Published status
+- Rich text formatting support
+- Search posts
+- Pagination
+
+### UI/UX
+- Fully responsive layout (Bootstrap 5)
+- Clean card-based post design
+- Mobile-friendly navigation
+- Custom theme
+
+### Deployment
+- Hosted on PythonAnywhere
+
+---
 
 ## Installation
 1. Clone repo
@@ -15,8 +35,7 @@ A simple Django blog application with draft/publish support and a custom theme.
 5. `python manage.py migrate`
 6. `python manage.py runserver`
 
-## Deployment
-Deployed on PythonAnywhere 🐍: mash37.pythonanywhere.com
+---
 
 ## License
 MIT

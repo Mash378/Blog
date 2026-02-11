@@ -5,6 +5,9 @@ from django.shortcuts import redirect
 from .models import Post
 from .forms import PostForm
 from django.shortcuts import render, get_object_or_404
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .serializers import PostSerializer
 
 # Create your views here.
 def post_list(request):
@@ -49,3 +52,8 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all().order_by('-published_date')
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
