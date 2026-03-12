@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('blog.api_urls')),     #REST API
     path('', include('blog.urls')),
+    path('auth/', include('django.contrib.auth.urls')),
 ]
