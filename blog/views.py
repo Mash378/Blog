@@ -58,6 +58,12 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
 
+def login_page(request):
+    return render(request, "blog/login.html")
+
+def signup_page(request):
+    return render(request, "blog/signup.html")
+    
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('-published_date')
     serializer_class = PostSerializer
